@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.enlie.blog.dao.CategoryMapper">
+
+    <insert id="addCategory" parameterType="com.enlie.blog.entity.Category">
+        insert into b_category
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="name!=null">
+                name,
+            </if>
+            <if test="aliasname!=null">
+                aliasname,
+            </if>
+            <if test="keyword!=null">
+                keyword,
+            </if>
+            <if test="des!=null">
+                des,
+            </if>
+        </trim>
+        <trim prefix="value(" suffix=")" suffixOverrides=",">
+            <if test="name!=null">
+                #{name},
+            </if>
+            <if test="aliasname!=null">
+                #{aliasname},
+            </if>
+            <if test="keyword!=null">
+                #{keyword},
+            </if>
+            <if test="des!=null">
+                #{des},
+            </if>
+        </trim>
+    </insert>
+
+</mapper>

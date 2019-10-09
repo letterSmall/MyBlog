@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.enlie.blog.dao.ArticleMapper">
+
+    <select id="getCategoryLabel" resultType="com.enlie.blog.entity.Label">
+      select * from b_ilabel where categoryid=#{categoryid}
+    </select>
+
+    <select id="getArticleInfo" resultType="com.enlie.blog.entity.ArticleInfo">
+      SELECT * FROM b_ainfo
+        <trim prefix="where">
+            <if test="selectInfoName!=null and selectInfoName!=''">
+                title=#{selectInfoName}
+            </if>
+        </trim>
+        ORDER BY createdate DESC LIMIT #{currentPageNo},#{pagesize}
+    </select>
+
+    <select id="getArticleInfoCount" resultType="Int">
+      select count(1) from b_ainfo
+        <trim prefix="where">
+          <if test="selectInfoName !=null and selectInfoName!=''">
+            title=#{selectInfoName}
+          </if>
+        </trim>
+    </select>
+
+    <resultMap id="Label" type="com.enlie.blog.entity.Label">
+        <id column="id" property="id"/>
+        <result column="categoryid" property="categoryid"/>
+        <result column="labelname" property="labelname"/>
+    </resultMap>
+
+    <insert id="insertArticleInfo" parameterType="com.enlie.blog.entity.ArticleInfo" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        insert into b_ainfo(title,categoryId,keyword,des,label,prcture,createdate,simpleContent)
+        value(#{title},#{categoryId},#{keyword},#{des},#{label},#{prcture},now(),#{simpleContent})
+    </insert>
+
+    <insert id="insertArticleContent" parameterType="com.enlie.blog.entity.Content" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        insert into b_content(infoId,content,cfile) value (#{infoId},#{content},#{cfile})
+    </insert>
+</mapper>

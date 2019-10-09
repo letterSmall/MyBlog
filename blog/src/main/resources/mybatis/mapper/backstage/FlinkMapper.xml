@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.enlie.blog.dao.FlinkMapper">
+
+    <insert id="addFlink" parameterType="com.enlie.blog.entity.FLink">
+      insert into b_flink
+      <trim prefix="(" suffix=")" suffixOverrides=",">
+          <if test="linkname!=null">
+              linkname,
+          </if>
+          <if test="url!=null">
+              url,
+          </if>
+          <if test=" image!=null">
+              image,
+          </if>
+          <if test="des!=null">
+              des,
+          </if>
+      </trim>
+      <trim prefix="value(" suffix=")" suffixOverrides=",">
+          <if test="linkname!=null">
+              #{linkname},
+          </if>
+          <if test="url!=null">
+              #{url},
+          </if>
+          <if test=" image!=null">
+              #{image},
+          </if>
+          <if test="des!=null">
+              #{des},
+          </if>
+      </trim>
+    </insert>
+
+</mapper>

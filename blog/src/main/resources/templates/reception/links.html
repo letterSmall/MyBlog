@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>异清轩博客友情链接</title>
+<link rel="stylesheet" type="text/css" th:href="@{/reception/css/bootstrap.min.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/reception/css/nprogress.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/reception/css/style.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/reception/css/font-awesome.min.css}">
+<link rel="apple-touch-icon-precomposed" th:href="@{/reception/images/icon/icon.png}">
+<link rel="shortcut icon" th:href="@{/reception/images/icon/favicon.ico}">
+<script th:src="@{/reception/js/jquery-2.1.4.min.js}"></script>
+<script th:src="@{/reception/js/nprogress.js}"></script>
+<script th:src="@{/reception/js/jquery.lazyload.min.js}"></script>
+
+</head>
+
+<body class="user-select">
+<header th:replace="reception/common/common :: common_header"></header>
+<section class="container container-page" style="padding: 0px">
+  
+  <div class="content">
+    <header class="article-header">
+      <h1 class="article-title">友情链接</h1>
+    </header>
+    <ul class="plinks">
+      <li th:each="l:${links}">
+        <a th:href="${l.getUrl()}" title="" target="_blank" rel="nofollow">
+          <img th:src="${l.getImage()}" th:alt="${l.getDes()}" th:text="${l.getLinkname()}">
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
+<footer th:replace="reception/common/common :: common_footer"></footer>
+<!--微信二维码模态框-->
+<div class="modal fade user-select" id="WeChat" tabindex="-1" role="dialog" aria-labelledby="WeChatModalLabel">
+  <div class="modal-dialog" role="document" style="margin-top:120px;width:280px;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="WeChatModalLabel" style="cursor:default;">微信扫一扫</h4>
+      </div>
+      <div class="modal-body" style="text-align:center"> <img src="images/weixin.jpg" alt="" style="cursor:pointer"/> </div>
+    </div>
+  </div>
+</div>
+
+<script th:src="@{/reception/js/bootstrap.min.js}"></script>
+<script th:src="@{/reception/js/jquery.ias.js}"></script>
+<script th:src="@{/reception/js/scripts.js}"></script>
+</body>
+</html>

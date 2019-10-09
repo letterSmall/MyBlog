@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:action="@{/login/back}" method="post" autocomplete="off" class="form-signin">
+    <h2 class="form-signin-heading" th:text="#{login.title}">管理员登录</h2>
+    <label for="userName" class="sr-only" th:text="#{login.name}">用户名</label>
+    <input type="text" id="userName" name="username" class="form-control" th:placeholder="#{login.name}" required
+           autofocus autocomplete="off" maxlength="10">
+    <label for="userPwd" class="sr-only" th:text="#{login.password}">密码</label>
+    <input type="password" id="userPwd" name="password" class="form-control" th:placeholder="#{login.password}"
+           required autocomplete="off" maxlength="18">
+    <div style="float: right;height: 20px;margin-bottom: 20px; margin-top: 5px">
+        <label>
+            <input type="checkbox" value="remember-me"/> [[#{login.remember}]]
+        </label>
+    </div>
+
+    <button class="btn btn-lg btn-primary btn-block" type="submit" id="signinSubmit" th:text="#{login.btn}">登录
+    </button>
+
+</form>
+</body>
+</html>
